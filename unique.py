@@ -1,4 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import functools
+import sys
 
 def iterunique(sequence):
     """Yield elements not encountered before"""
@@ -16,9 +20,8 @@ def unique_stdin_stdout():
         iterable = iter(functools.partial(raw_input), None)
         for unique_element in iterunique(iterable):
             print unique_element
-    except EOFError:
-        pass
-
+    except IOError, EOFError:
+        sys.exit(0)
 
 def cli():
     try:
